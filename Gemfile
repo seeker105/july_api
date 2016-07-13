@@ -33,6 +33,10 @@ gem 'faraday'
 gem 'figaro'
 gem 'capybara'
 gem 'launchy'
+gem 'selenium'
+gem 'omniauth'
+gem 'omniauth-dropbox-oauth2'
+gem 'awesome_print'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
