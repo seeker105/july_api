@@ -18,7 +18,7 @@ class DropboxService
       req.url "list_folder"
       req.headers['Authorization'] = ('Bearer ' + current_user.token)
       req.headers['Content-Type'] = 'application/json'
-      req.body = "{\"path\": \"/#{current_path}\"}"
+      req.body = "{\"path\": \"#{current_path}\"}"
     end
     result = JSON.parse(response.body, symbolize_names: true)[:entries]
   end

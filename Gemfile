@@ -34,7 +34,7 @@ gem 'figaro'
 gem 'capybara'
 gem 'launchy'
 gem 'selenium'
-gem 'omniauth'
+gem 'omniauth-oauth2'
 gem 'omniauth-dropbox-oauth2'
 gem 'awesome_print'
 

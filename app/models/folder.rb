@@ -7,6 +7,7 @@ class Folder
   end
 
   def self.all(current_user)
+    byebug
     result = DropboxService.new.get_folder_list(current_user)
     final = []
     result.each do |raw_data|

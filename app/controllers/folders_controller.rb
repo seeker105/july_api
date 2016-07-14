@@ -6,16 +6,14 @@ class FoldersController < ApplicationController
 
   def show
     @path = params[:path]
+    @path = "" if @path == "empty string"
     @folders, @files = Folder.find(current_user, @path)
-    # byebug
   end
 
-  def destroy
+  def copy_start
+    session[:copying] = true
+    session[:copy_start_path] = params[:start_path]
+    byebug
   end
 
-  def create
-  end
-
-  def update
-  end
 end
