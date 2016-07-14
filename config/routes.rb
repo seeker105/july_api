@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   get 'folders/index', to: 'folders#index', as: :folders_index
   get 'folders/show/:path', to: 'folders#show', as: :folder_show
-  get 'folders/copy/start/:start_path', to: 'folders#copy_start', as: :copy_start
+  get 'folders/copy/start/:source_path/:name', to: 'folders#copy_start', as: :copy_start
+  # get 'folders/copy/start/:source_path/:name', to: 'folders#copy_start', as: :copy_start
+  get 'folders/copy/finish/:destination_path', to: 'folders#copy_finish', as: :copy_finish
   get 'folders/destroy' #TODO
   get 'folders/create' #TODO
   get 'folders/update' #TODO

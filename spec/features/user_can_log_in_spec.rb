@@ -20,8 +20,6 @@ RSpec.feature "user can log in" do
     visit root_url
     expect(page.status_code).to eq(200)
     click_link "Login to Dropbox"
-    # expect(current_path).to eq(folders_index_path)
-    save_and_open_page
   end
 
   def stub_omniauth
