@@ -7,7 +7,6 @@ class Folder
   end
 
   def self.all(current_user)
-    byebug
     result = DropboxService.new.get_folder_list(current_user)
     final = []
     result.each do |raw_data|
@@ -25,6 +24,10 @@ class Folder
       files << DataFile.new(content) if (content[:".tag"] == "file")
     end
     return [folders, files]
+  end
+
+  def self.copy(current_user, source_path, destination_path, name)
+    DropboxService.new.copy(current_user, source_path, destination_path, name)
   end
 
 

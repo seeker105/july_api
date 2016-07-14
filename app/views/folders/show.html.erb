@@ -5,7 +5,7 @@
   <ul>
     <% @folders.each do |folder| %>
       <li><%= link_to folder.name, folder_show_path(folder.path) %><br />
-          <%= link_to "Copy", copy_start_path(folder.path) %><br /><br /></li>
+          <%= link_to "Copy", copy_start_path(source_path: folder.path, name: folder.name) %><br /><br /></li>
     <% end %>
   </ul>
 <% end %>
@@ -17,8 +17,10 @@
   <ul>
     <% @files.each do |file| %>
       <li><%= file.name %><br />
-          <%= link_to "Copy", copy_start_path(file.path) %><br /><br /></li>
-
+          <%= file.path %><br />
+          <% new_path = file.path.chomp(file.name).chomp("/") %>
+          <%= new_path %><br />
+          <%= link_to "Copy", copy_start_path(source_path: new_path, name: file.name) %><br /><br /></li>
     <% end %>
   </ul>
 <% end %>

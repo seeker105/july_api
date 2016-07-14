@@ -3,8 +3,8 @@
 <ul>
   <% @folders.each do |folder| %>
     <li><%= link_to folder.name, folder_show_path(path: folder.path) %><br />
-        <%= link_to "Copy", copy_start_path(folder.path) %><br /><br /></li>
-
+        <%= link_to "Copy", copy_start_path(folder.path) %><br /><br />
+    </li>
   <% end %>
 </ul>
 <% end %>

@@ -3,6 +3,9 @@
     <% if current_user && (!current_page?(root_path)) %>
       <%= link_to "Return to Root", folder_show_path("empty string") %>
     <% end %>
-    
+    <% if copying? %>
+      <%= link_to "Copy Here", copy_finish_path(destination_path: current_path) %>
+      <%= link_to "Cancel Copy", copy_finish_path(destination_path: "abort copy") %>
+    <% end %>
   </div>
 </nav>
