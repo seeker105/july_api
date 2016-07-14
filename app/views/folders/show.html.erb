@@ -1,0 +1,21 @@
+<h1><%= @path %></h1>
+
+<h2>Folders:</h2>
+<% if @folders.count > 0 %>
+  <ul>
+    <% @folders.each do |folder| %>
+      <li><%= link_to folder.name, folder_show_path(folder.path) %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<br /><hr /><br />
+
+<h2>Files:</h2>
+<% if @files.count > 0 %>
+  <ul>
+    <% @files.each do |file| %>
+      <li><%= file.name %></li>
+    <% end %>
+  </ul>
+<% end %>

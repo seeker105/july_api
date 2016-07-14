@@ -1,11 +1,6 @@
 class User < ActiveRecord::Base
 
-  def create(auth_info)
-    byebug
-  end
-
   def self.from_auth(auth_info)
-    byebug
     where(uid: auth_info.uid).first_or_create do |new_user|
       new_user.uid    = auth_info.uid
       new_user.full_name = auth_info.info.name
@@ -14,6 +9,6 @@ class User < ActiveRecord::Base
       new_user.email  = auth_info.info.email
       new_user.token  = auth_info.credentials.token
     end
-    
+
   end
 end

@@ -7,8 +7,7 @@ class SessionsController < ApplicationController
     else
       flash[:danger] = "There was a problem logging in"
     end
-    byebug
-    redirect_to root_path
+    redirect_to folders_index_path
   end
 
   def destroy

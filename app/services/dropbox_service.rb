@@ -1,42 +1,25 @@
 class DropboxService
 
-  def initialize
-  end
-
-  def login
-    @connection = Faraday.new(url: "https://www.dropbox.com/oauth2/authorize")
-    response = @connection.get do |req|
-      req.params['client_id'] = ENV['API_key']
-      req.params['response_type'] = "token"
-      req.params['redirect_uri'] = "http://127.0.0.1:3000/auth/dropbox/callback"
+  def get_folder_list(current_user)
+    connection = Faraday.new(url: "https://api.dropboxapi.com/2/sharing/")
+    response = connection.post do |req|
+      req.url "list_folders"
+      req.headers['Authorization'] = ('Bearer ' + current_user.token)
+      req.headers['Content-Type'] = 'application/json'
+      req.body = '{"limit": 100}'
     end
-    result = JSON.parse(response.body)
-  end
-
-
-  def get_user_data(token)
-    @connection = Faraday.new(url: "https://api.dropboxapi.com/2/users/get_account")
-    response = @connection.get do |req|
-      req.header['Authorization'] = ""
-      req.header['response_type'] = ""
-      req.params['redirect_uri'] = "http://127.0.0.1:3000/auth/dropbox/callback"
-    end
-    result = JSON.parse(response.body)
-    byebug
+    result = JSON.parse(response.body, symbolize_names: true)[:entries]
     return result
   end
 
-  def get_account_id(token)
-    @connection = Faraday.new(url: "https://api.dropboxapi.com/oauth2/token")
-    response = @connection.post do |req|
-      req.params['code'] = token
-      req.params['grant_type'] = "authorization_code"
-      req.params['client_id'] = ENV['API_key']
-      req.params['client_secret'] = ENV['API_secret']
-      req.params['redirect_uri'] = "http://127.0.0.1:3000/auth/dropbox/callback"
+  def get_folder_contents(current_user, current_path)
+    connection = Faraday.new(url: "https://api.dropboxapi.com/2/files/")
+    response = connection.post do |req|
+      req.url "list_folder"
+      req.headers['Authorization'] = ('Bearer ' + current_user.token)
+      req.headers['Content-Type'] = 'application/json'
+      req.body = "{\"path\": \"/#{current_path}\"}"
     end
-    result = JSON.parse(response.body)
-    byebug
-    return result
+    result = JSON.parse(response.body, symbolize_names: true)[:entries]
   end
 end
