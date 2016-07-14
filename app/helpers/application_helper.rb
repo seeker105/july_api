@@ -1,13 +1,8 @@
 module ApplicationHelper
-  def copying?
-    session[:copying] == true
-  end
-
-  def source_path
-    session[:source_path] ? session[:source_path] : nil
-  end
-
-  def current_path
-    session[:current_path] ? session[:current_path] : nil
+  def format_file_trace(path_trace)
+    if path_trace.length > 0
+      path_trace[0] = ''
+      path_trace.gsub("/", " > ")
+    end
   end
 end

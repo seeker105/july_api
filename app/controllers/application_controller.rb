@@ -19,4 +19,6 @@ class ApplicationController < ActionController::Base
   def current_path
     session[:current_path] ? session[:current_path] : nil
   end
+
+
 end
