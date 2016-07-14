@@ -21,7 +21,6 @@ class FoldersController < ApplicationController
 
   def copy_finish
     session[:copying] = false
-    source = session[:source_path]
     destination = params[:destination_path]
     name = session[:source_name]
     if destination == "abort copy"
